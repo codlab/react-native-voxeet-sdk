@@ -49,7 +49,7 @@ public class RNVoxeetSdkModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "RNVoxeetSDK";
+        return "RNVoxeetSdk";
     }
 
 
