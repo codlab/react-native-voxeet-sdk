@@ -117,7 +117,7 @@ After the `permissions` required, add those xml nodes :
 
 ## Usage
 ```javascript
-import { RNVoxeetSdk } from "@voxeet/react-native-voxeet-sdk";
+import { RNVoxeetSdk, RNSessionService } from "@voxeet/react-native-voxeet-sdk";
 ...
 ```
 

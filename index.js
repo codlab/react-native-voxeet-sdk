@@ -1,6 +1,6 @@
 
 import { NativeModules } from 'react-native';
 
-const { RNVoxeetSdk } = NativeModules;
+const { RNVoxeetSdk, RNSessionService } = NativeModules;
 
-export default RNVoxeetSdk;
+export { RNVoxeetSdk, RNSessionService };

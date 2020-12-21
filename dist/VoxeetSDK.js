@@ -1,33 +1,33 @@
 import { DeviceEventEmitter, NativeEventEmitter, NativeModules, Platform } from 'react-native';
 import SessionService from "./services/SessionService";
-var RNVoxeetSDK = NativeModules.RNVoxeetSDK;
+var RNVoxeetSdk = NativeModules.RNVoxeetSdk;
 ;
 ;
 var _VoxeetSDK = /** @class */ (function () {
     function _VoxeetSDK() {
         this.refreshAccessTokenCallback = null;
         this.session = new SessionService();
-        this.events = new NativeEventEmitter(RNVoxeetSDK);
+        this.events = new NativeEventEmitter(RNVoxeetSdk);
     }
     _VoxeetSDK.prototype.initialize = function (consumerKey, consumerSecret) {
-        return RNVoxeetSDK.initialize(consumerKey, consumerSecret);
+        return RNVoxeetSdk.initialize(consumerKey, consumerSecret);
     };
     _VoxeetSDK.prototype.initializeToken = function (accessToken, refreshToken) {
         var _this = this;
         if (!this.refreshAccessTokenCallback) {
             this.refreshAccessTokenCallback = function () {
                 refreshToken()
-                    .then(function (token) { return RNVoxeetSDK.onAccessTokenOk(token); })
+                    .then(function (token) { return RNVoxeetSdk.onAccessTokenOk(token); })
                     .catch(function (err) {
-                    RNVoxeetSDK.onAccessTokenKo("Token retrieval error");
+                        RNVoxeetSdk.onAccessTokenKo("Token retrieval error");
                 });
             };
-            var eventEmitter = Platform.OS == "android" ? DeviceEventEmitter : new NativeEventEmitter(RNVoxeetSDK);
+            var eventEmitter = Platform.OS == "android" ? DeviceEventEmitter : new NativeEventEmitter(RNVoxeetSdk);
             eventEmitter.addListener("refreshToken", function (e) {
                 _this.refreshAccessTokenCallback && _this.refreshAccessTokenCallback();
             });
         }
-        return RNVoxeetSDK.initializeToken(accessToken);
+        return RNVoxeetSdk.initializeToken(accessToken);
     };
     return _VoxeetSDK;
 }());

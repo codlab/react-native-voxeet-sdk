@@ -1,6 +1,7 @@
 import { DeviceEventEmitter, NativeEventEmitter, NativeModules, Platform } from 'react-native';
+import ConferenceUser from './types/ConferenceUser';
 import SessionService from "./services/SessionService";
-const { RNVoxeetSDK } = NativeModules;
+const { RNVoxeetSdk } = NativeModules;
 
 export interface RefreshCallback {
   (): void;
@@ -13,29 +14,30 @@ export interface TokenRefreshCallback {
 class _VoxeetSDK {
   refreshAccessTokenCallback: RefreshCallback|null = null;
   public session = new SessionService();
-  public events = new NativeEventEmitter(RNVoxeetSDK);
+  public events = new NativeEventEmitter(RNVoxeetSdk);
 
   initialize(consumerKey: string, consumerSecret: string): Promise<any> {
-      return RNVoxeetSDK.initialize(consumerKey, consumerSecret);
+      return RNVoxeetSdk.initialize(consumerKey, consumerSecret);
   }
 
   initializeToken(accessToken: string|undefined, refreshToken: TokenRefreshCallback) {
     if(!this.refreshAccessTokenCallback) {
       this.refreshAccessTokenCallback = () => {
         refreshToken()
-        .then(token => RNVoxeetSDK.onAccessTokenOk(token))
+        .then(token => RNVoxeetSdk.onAccessTokenOk(token))
         .catch(err => {
-          RNVoxeetSDK.onAccessTokenKo("Token retrieval error");
+          RNVoxeetSdk.onAccessTokenKo("Token retrieval error");
         });
       }
-      const eventEmitter = Platform.OS == "android" ? DeviceEventEmitter : new NativeEventEmitter(RNVoxeetSDK);
+      const eventEmitter = Platform.OS == "android" ? DeviceEventEmitter : new NativeEventEmitter(RNVoxeetSdk);
       eventEmitter.addListener("refreshToken", (e: Event) => {
         this.refreshAccessTokenCallback && this.refreshAccessTokenCallback();
       });
     }
 
-    return RNVoxeetSDK.initializeToken(accessToken);
+    return RNVoxeetSdk.initializeToken(accessToken);
   }
+
 }
 
 export default new _VoxeetSDK();

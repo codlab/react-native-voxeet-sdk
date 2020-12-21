@@ -11,12 +11,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import io.dolby.sdk.services.RNSessionServiceModule;
 import io.dolby.sdk.video.RNVoxeetSDKVideoViewManager;
 
 public class RNVoxeetSdkPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.asList(new RNVoxeetSdkModule(reactContext));
+        return Arrays.asList(
+                new RNVoxeetSdkModule(reactContext),
+                new RNSessionServiceModule(reactContext)
+        );
     }
 
     // Deprecated from RN 0.47
