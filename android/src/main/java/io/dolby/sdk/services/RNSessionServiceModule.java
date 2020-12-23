@@ -2,7 +2,6 @@ package io.dolby.sdk.services;
 
 import androidx.annotation.NonNull;
 
-import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -12,6 +11,8 @@ import com.facebook.react.bridge.WritableMap;
 import com.voxeet.VoxeetSDK;
 import com.voxeet.sdk.json.ParticipantInfo;
 import com.voxeet.sdk.services.SessionService;
+
+import io.dolby.sdk.models.ConferenceUserUtil;
 
 public class RNSessionServiceModule extends ReactContextBaseJavaModule {
 
@@ -28,21 +29,13 @@ public class RNSessionServiceModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void participant(final Promise promise) {
-        if (_current_user == null) {
-            promise.resolve(null);
-        } else {
-            WritableMap args = new Arguments().createMap();
-            args.putString("name", _current_user.getName());
-            args.putString("externalId", _current_user.getExternalId());
-            args.putString("avatarUrl", _current_user.getAvatarUrl());
-
-            promise.resolve(args);
-        }
+        WritableMap args = _current_user == null ? null : ConferenceUserUtil.toMap(_current_user);
+        promise.resolve(args);
     }
 
     @ReactMethod
     public void open(ReadableMap userInfo, final Promise promise) {
-        final ParticipantInfo participantInfo = toUserInfo(userInfo);
+        final ParticipantInfo participantInfo = ConferenceUserUtil.toParticipantInfo(userInfo);
 
         if (isConnected() && isSameUser(participantInfo)) {
             promise.resolve(true);
@@ -74,13 +67,6 @@ public class RNSessionServiceModule extends ReactContextBaseJavaModule {
                 });
     }
 
-
-    private ParticipantInfo toUserInfo(ReadableMap map) {
-        return new ParticipantInfo(
-                map.getString("name"),
-                map.getString("externalId"),
-                map.getString("avatarUrl"));
-    }
 
     private boolean isConnected() {
         SessionService sessionService = VoxeetSDK.session();

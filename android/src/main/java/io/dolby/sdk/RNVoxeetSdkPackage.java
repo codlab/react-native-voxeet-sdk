@@ -1,4 +1,3 @@
-
 package io.dolby.sdk;
 
 import com.facebook.react.ReactPackage;
@@ -11,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import io.dolby.sdk.services.RNConferenceServiceModule;
 import io.dolby.sdk.services.RNSessionServiceModule;
 import io.dolby.sdk.video.RNVoxeetSDKVideoViewManager;
 
@@ -19,7 +19,8 @@ public class RNVoxeetSdkPackage implements ReactPackage {
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         return Arrays.asList(
                 new RNVoxeetSdkModule(reactContext),
-                new RNSessionServiceModule(reactContext)
+                new RNSessionServiceModule(reactContext),
+                new RNConferenceServiceModule(reactContext)
         );
     }
 

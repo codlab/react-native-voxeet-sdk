@@ -1,5 +1,6 @@
 import { DeviceEventEmitter, NativeEventEmitter, NativeModules, Platform } from 'react-native';
 import SessionService from "./services/SessionService";
+import ConferenceService from "./services/ConferenceService";
 var RNVoxeetSdk = NativeModules.RNVoxeetSdk;
 ;
 ;
@@ -7,6 +8,7 @@ var _VoxeetSDK = /** @class */ (function () {
     function _VoxeetSDK() {
         this.refreshAccessTokenCallback = null;
         this.session = new SessionService();
+        this.conference = new ConferenceService();
         this.events = new NativeEventEmitter(RNVoxeetSdk);
     }
     _VoxeetSDK.prototype.initialize = function (consumerKey, consumerSecret) {
@@ -18,9 +20,7 @@ var _VoxeetSDK = /** @class */ (function () {
             this.refreshAccessTokenCallback = function () {
                 refreshToken()
                     .then(function (token) { return RNVoxeetSdk.onAccessTokenOk(token); })
-                    .catch(function (err) {
-                        RNVoxeetSdk.onAccessTokenKo("Token retrieval error");
-                });
+                    .catch(function (err) { return RNVoxeetSdk.onAccessTokenKo("Token retrieval error"); });
             };
             var eventEmitter = Platform.OS == "android" ? DeviceEventEmitter : new NativeEventEmitter(RNVoxeetSdk);
             eventEmitter.addListener("refreshToken", function (e) {

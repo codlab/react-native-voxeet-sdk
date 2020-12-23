@@ -1,13 +1,9 @@
 export var RTCPMode;
 (function (RTCPMode) {
     RTCPMode["WORST"] = "worst";
-    RTCPMode["BEST"] = "best";
+    RTCPMode["EVERAGE"] = "average";
+    RTCPMode["MAX"] = "max";
 })(RTCPMode || (RTCPMode = {}));
-export var Mode;
-(function (Mode) {
-    Mode["STANDARD"] = "standard";
-    Mode["PUSH"] = "push";
-})(Mode || (Mode = {}));
 export var Codec;
 (function (Codec) {
     Codec["VP8"] = "VP8";

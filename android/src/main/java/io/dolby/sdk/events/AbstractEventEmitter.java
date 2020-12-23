@@ -35,16 +35,20 @@ public class AbstractEventEmitter {
     }
 
     protected <TYPE> AbstractEventEmitter emit(TYPE object) {
+        // Emit a specific event
         EventFormatterCallback<TYPE> callback = transformers.get(object.getClass());
         WritableMap map = new WritableNativeMap();
         callback.transform(map, object);
 
-        WritableMap event = new WritableNativeMap();
-        event.putMap("event", map);
-        event.putString("name", callback.name());
-
         context.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                 .emit(callback.name(), map);
+
+        // Emit a general event
+        WritableMap event = new WritableNativeMap();
+        map = new WritableNativeMap();
+        callback.transform(map, object);
+        event.putMap("event", map);
+        event.putString("name", callback.name());
 
         context.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
                 .emit("VoxeetEvent", event);

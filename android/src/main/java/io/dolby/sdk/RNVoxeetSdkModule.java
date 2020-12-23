@@ -43,7 +43,6 @@ public class RNVoxeetSdkModule extends ReactContextBaseJavaModule {
         for (AbstractEventEmitter emitter : eventEmitters) {
             emitter.register();
         }
-
     }
 
     @Override

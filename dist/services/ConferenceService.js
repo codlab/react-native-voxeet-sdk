@@ -35,21 +35,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { NativeModules } from 'react-native';
-export var RNSessionService = NativeModules.RNSessionService;
-var SessionService = /** @class */ (function () {
-    function SessionService() {
+var RNConferenceService = NativeModules.RNConferenceService;
+var ConferenceService = /** @class */ (function () {
+    function ConferenceService() {
         var _this = this;
-        this.participant = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, RNSessionService.participant()];
+        this.create = function (options) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, RNConferenceService.create(options)];
         }); }); };
-        this.open = function (participant) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, RNSessionService.open(participant)];
+        this.join = function (conferenceId, options) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, RNConferenceService.join(conferenceId, options)];
         }); }); };
-        this.close = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, RNSessionService.close()];
+        this.leave = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, RNConferenceService.leave()];
+        }); }); };
+        this.startVideo = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, RNConferenceService.startVideo()];
+        }); }); };
+        this.stopVideo = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, RNConferenceService.stopVideo()];
         }); }); };
     }
-    return SessionService;
+    return ConferenceService;
 }());
-export default SessionService;
-//# sourceMappingURL=SessionService.js.map
+export default ConferenceService;
+//# sourceMappingURL=ConferenceService.js.map

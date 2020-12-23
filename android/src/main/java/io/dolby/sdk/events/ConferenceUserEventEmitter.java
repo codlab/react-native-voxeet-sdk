@@ -89,15 +89,4 @@ public class ConferenceUserEventEmitter extends AbstractEventEmitter {
     private void toMap(@NonNull WritableMap map, @NonNull Participant user) {
         map.putMap("user", ConferenceUserUtil.toMap(user));
     }
-
-    private void toMap(@NonNull WritableMap map, @NonNull String peerId, @Nullable MediaStream mediaStream) {
-        map.putString("peerId", peerId);
-        if (null != mediaStream) {
-            map.putMap("mediaStream", MediaStreamUtil.toMap(mediaStream));
-        }
-    }
-
-    private void toMap(@NonNull WritableMap map, @NonNull String peerId) {
-        toMap(map, peerId, null);
-    }
 }
