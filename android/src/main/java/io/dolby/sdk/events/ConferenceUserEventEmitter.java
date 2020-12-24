@@ -11,6 +11,7 @@ import com.voxeet.sdk.events.v2.ParticipantAddedEvent;
 import com.voxeet.sdk.events.v2.ParticipantUpdatedEvent;
 import com.voxeet.sdk.events.v2.StreamAddedEvent;
 import com.voxeet.sdk.events.v2.StreamRemovedEvent;
+import com.voxeet.sdk.events.v2.StreamUpdatedEvent;
 import com.voxeet.sdk.models.Participant;
 
 import org.greenrobot.eventbus.EventBus;
@@ -41,6 +42,11 @@ public class ConferenceUserEventEmitter extends AbstractEventEmitter {
             public void transform(@NonNull WritableMap map, @NonNull StreamAddedEvent instance) {
                 toMap(map, instance.participant, instance.mediaStream);
             }
+        }).register(new EventFormatterCallback<StreamUpdatedEvent>(StreamUpdatedEvent.class) {
+            @Override
+            public void transform(@NonNull WritableMap map, @NonNull StreamUpdatedEvent instance) {
+                toMap(map, instance.participant, instance.mediaStream);
+            }
         }).register(new EventFormatterCallback<StreamRemovedEvent>(StreamRemovedEvent.class) {
             @Override
             public void transform(@NonNull WritableMap map, @NonNull StreamRemovedEvent instance) {
@@ -66,6 +72,11 @@ public class ConferenceUserEventEmitter extends AbstractEventEmitter {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(StreamAddedEvent event) {
+        emit(event);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(StreamUpdatedEvent event) {
         emit(event);
     }
 
