@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import io.dolby.sdk.services.RNConferenceServiceModule;
+import io.dolby.sdk.services.RNRecordingServiceModule;
 import io.dolby.sdk.services.RNSessionServiceModule;
 import io.dolby.sdk.video.RNVoxeetSDKVideoViewManager;
 
@@ -20,7 +21,8 @@ public class RNVoxeetSdkPackage implements ReactPackage {
         return Arrays.asList(
                 new RNVoxeetSdkModule(reactContext),
                 new RNSessionServiceModule(reactContext),
-                new RNConferenceServiceModule(reactContext)
+                new RNConferenceServiceModule(reactContext),
+                new RNRecordingServiceModule(reactContext)
         );
     }
 
