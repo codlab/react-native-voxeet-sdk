@@ -1,12 +1,14 @@
 import { NativeModules } from 'react-native';
 import ConferenceUser from "../types/ConferenceUser";
 
-const { RNSessionServiceModule } = NativeModules;
+export const { RNSessionService } = NativeModules;
 
 export default class SessionService {
-  open = async (participant: ConferenceUser): Promise<boolean> => {
-      return RNSessionServiceModule.open(participant);
-  }
+  
+  participant = async (): Promise<ConferenceUser> => RNSessionService.participant();
 
-  close = async (): Promise<boolean> => RNSessionServiceModule.close();
+  open = async (participant: ConferenceUser): Promise<boolean> => RNSessionService.open(participant);
+
+  close = async (): Promise<boolean> => RNSessionService.close();
+
 }

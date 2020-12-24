@@ -35,21 +35,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { NativeModules } from 'react-native';
-export var RNSessionService = NativeModules.RNSessionService;
-var SessionService = /** @class */ (function () {
-    function SessionService() {
+export var RNRecordingService = NativeModules.RNRecordingService;
+var RecordingService = /** @class */ (function () {
+    function RecordingService() {
         var _this = this;
-        this.participant = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, RNSessionService.participant()];
+        this.start = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, RNRecordingService.start()];
         }); }); };
-        this.open = function (participant) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, RNSessionService.open(participant)];
-        }); }); };
-        this.close = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, RNSessionService.close()];
+        this.stop = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, RNRecordingService.stop()];
         }); }); };
     }
-    return SessionService;
+    return RecordingService;
 }());
-export default SessionService;
-//# sourceMappingURL=SessionService.js.map
+export default RecordingService;
+//# sourceMappingURL=RecordingService.js.map

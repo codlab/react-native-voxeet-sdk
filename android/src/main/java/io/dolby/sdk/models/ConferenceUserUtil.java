@@ -20,9 +20,7 @@ public final class ConferenceUserUtil {
     public final static String PARTICIPANT_AVATAR_URL = "avatarUrl";
     public final static String CONFERENCE_STATUS = "conferenceStatus";
 
-    private ConferenceUserUtil() {
-
-    }
+    private ConferenceUserUtil() { }
 
     @NonNull
     public static WritableMap toMap(@NonNull Participant user) {
@@ -41,6 +39,25 @@ public final class ConferenceUserUtil {
             }
             if (null != userInfo.getAvatarUrl()) {
                 map.putString(PARTICIPANT_AVATAR_URL, userInfo.getAvatarUrl());
+            }
+        }
+
+        return map;
+    }
+
+    @NonNull
+    public static WritableMap toMap(@NonNull ParticipantInfo participantInfo) {
+        WritableMap map = new WritableNativeMap();
+
+        if (participantInfo != null) {
+            if (participantInfo.getName() != null) {
+                map.putString(PARTICIPANT_NAME, participantInfo.getName());
+            }
+            if (participantInfo.getExternalId() != null) {
+                map.putString(PARTICIPANT_EXTERNAL_ID, participantInfo.getExternalId());
+            }
+            if (participantInfo.getAvatarUrl() != null) {
+                map.putString(PARTICIPANT_AVATAR_URL, participantInfo.getAvatarUrl());
             }
         }
 
@@ -78,9 +95,11 @@ public final class ConferenceUserUtil {
     }
 
     public static ParticipantInfo toParticipantInfo(ReadableMap map) {
-        return new ParticipantInfo(map.getString(PARTICIPANT_NAME),
+        return new ParticipantInfo(
+                map.getString(PARTICIPANT_NAME),
                 map.getString(PARTICIPANT_EXTERNAL_ID),
-                map.getString(PARTICIPANT_AVATAR_URL));
+                map.getString(PARTICIPANT_AVATAR_URL)
+        );
     }
 
 }

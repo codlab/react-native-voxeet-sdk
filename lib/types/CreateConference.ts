@@ -1,23 +1,19 @@
 export enum RTCPMode {
   WORST = "worst",
-  BEST = "best"
+  EVERAGE = "average",
+  MAX = "max"
 }
-  
-export enum Mode {
-  STANDARD = "standard",
-  PUSH = "push"
-}
-  
+
 export enum Codec {
   VP8 = "VP8",
   H264 = "H264"
 }
 
 export interface CreateParameters {
-  ttl?: number;
-  rtcpMode?: RTCPMode; //best / worst, default => worst
-  mode?: Mode; // push / standard, default => standard
-  videoCodec?: Codec; //default VP8
+  dolbyVoice?: boolean; // default is false
+  ttl?: number; // default is 0
+  rtcpMode?: RTCPMode; // worst / average (default) / max
+  videoCodec?: Codec; //default is H264
   liveRecording?: boolean; //default false
 }
 
