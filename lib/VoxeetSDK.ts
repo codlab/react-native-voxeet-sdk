@@ -1,7 +1,12 @@
 import { DeviceEventEmitter, NativeEventEmitter, NativeModules, Platform } from 'react-native';
-import ConferenceService from "./services/ConferenceService";
-import RecordingService from "./services/RecordingService";
-import SessionService from "./services/SessionService";
+import {
+  CommandService,
+  ConferenceService,
+  MediaDeviceService,
+  RecordingService,
+  SessionService
+} from "./services/index";
+
 const { RNVoxeetSdk } = NativeModules;
 
 export interface RefreshCallback {
@@ -18,6 +23,9 @@ class _VoxeetSDK {
   public session = new SessionService();
   public conference = new ConferenceService();
   public recording = new RecordingService();
+  public command = new CommandService();
+  public mediaDevice = new MediaDeviceService();
+  
   public events = new NativeEventEmitter(RNVoxeetSdk);
 
   initialize(consumerKey: string, consumerSecret: string): Promise<any> {

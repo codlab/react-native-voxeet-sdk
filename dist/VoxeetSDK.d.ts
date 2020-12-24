@@ -1,7 +1,5 @@
 import { NativeEventEmitter } from 'react-native';
-import ConferenceService from "./services/ConferenceService";
-import RecordingService from "./services/RecordingService";
-import SessionService from "./services/SessionService";
+import { CommandService, ConferenceService, MediaDeviceService, RecordingService, SessionService } from "./services/index";
 export interface RefreshCallback {
     (): void;
 }
@@ -13,6 +11,8 @@ declare class _VoxeetSDK {
     session: SessionService;
     conference: ConferenceService;
     recording: RecordingService;
+    command: CommandService;
+    mediaDevice: MediaDeviceService;
     events: NativeEventEmitter;
     initialize(consumerKey: string, consumerSecret: string): Promise<any>;
     initializeToken(accessToken: string | undefined, refreshToken: TokenRefreshCallback): any;

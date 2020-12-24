@@ -10,7 +10,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import io.dolby.sdk.services.RNCommandServiceModule;
 import io.dolby.sdk.services.RNConferenceServiceModule;
+import io.dolby.sdk.services.RNMediaDeviceServiceModule;
 import io.dolby.sdk.services.RNRecordingServiceModule;
 import io.dolby.sdk.services.RNSessionServiceModule;
 import io.dolby.sdk.video.RNVoxeetSDKVideoViewManager;
@@ -20,9 +22,11 @@ public class RNVoxeetSdkPackage implements ReactPackage {
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         return Arrays.asList(
                 new RNVoxeetSdkModule(reactContext),
-                new RNSessionServiceModule(reactContext),
+                new RNCommandServiceModule(reactContext),
                 new RNConferenceServiceModule(reactContext),
-                new RNRecordingServiceModule(reactContext)
+                new RNMediaDeviceServiceModule(reactContext),
+                new RNRecordingServiceModule(reactContext),
+                new RNSessionServiceModule(reactContext)
         );
     }
 

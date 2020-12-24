@@ -6,22 +6,22 @@ import com.facebook.react.bridge.WritableMap;
 
 public abstract class EventFormatterCallback<TYPE> {
 
-    private String name;
-    private Class<TYPE> klass;
+    private final String _name;
+    private final Class<TYPE> _klass;
 
     protected EventFormatterCallback(Class<TYPE> klass) {
-        name = klass.getSimpleName();
-        this.klass = klass;
+        _name = klass.getSimpleName();
+        _klass = klass;
     }
 
     @NonNull
     String name() {
-        return name;
+        return _name;
     }
 
     @NonNull
     Class<TYPE> getKlass() {
-        return klass;
+        return _klass;
     }
 
     abstract void transform(@NonNull WritableMap map, @NonNull TYPE instance);

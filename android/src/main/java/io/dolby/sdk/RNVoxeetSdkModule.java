@@ -17,8 +17,10 @@ import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
 import io.dolby.sdk.events.AbstractEventEmitter;
+import io.dolby.sdk.events.CommandEventEmitter;
 import io.dolby.sdk.events.ConferenceStatusEventEmitter;
 import io.dolby.sdk.events.ConferenceUserEventEmitter;
+import io.dolby.sdk.events.RecordingEventEmitter;
 import io.dolby.sdk.utils.Lock;
 
 public class RNVoxeetSdkModule extends ReactContextBaseJavaModule {
@@ -39,6 +41,8 @@ public class RNVoxeetSdkModule extends ReactContextBaseJavaModule {
         eventEmitters = new ArrayList<>();
         eventEmitters.add(new ConferenceStatusEventEmitter(reactContext, EventBus.getDefault()));
         eventEmitters.add(new ConferenceUserEventEmitter(reactContext, EventBus.getDefault()));
+        eventEmitters.add(new RecordingEventEmitter(reactContext, EventBus.getDefault()));
+        eventEmitters.add(new CommandEventEmitter(reactContext, EventBus.getDefault()));
 
         for (AbstractEventEmitter emitter : eventEmitters) {
             emitter.register();
