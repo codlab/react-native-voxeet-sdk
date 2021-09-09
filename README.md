@@ -38,7 +38,7 @@ or
 2. Append the following lines to `android/settings.gradle`:
   	```
   	include ':@voxeet_react-native-voxeet-sdk'
-  	project(':@voxeet_react-native-voxeet-sdk').projectDir = new File(rootProject.projectDir, 	'../node_modules/@voxeet/react-native-voxeet-sdk/android')
+  	project(':@voxeet_react-native-voxeet-sdk').projectDir = new File(rootProject.projectDir, '../node_modules/@voxeet/react-native-voxeet-sdk/android')
   	```
 
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
@@ -56,9 +56,9 @@ _WIP_
 
 ### Android
 
-**Warning : those modification are not done automatically by `react-native link`. You must set them !**
+**Warning: those modification are not done automatically by `react-native link`. You must set them !**
 
-**Warning : the SDK is only compatible with the Hermes engine, you can use it using the following inside the app/build.gradle file :**
+**Warning: the SDK is only compatible with the Hermes engine, you can use it using the following inside the app/build.gradle file :**
 
 ```
 project.ext.react = [
@@ -116,9 +116,9 @@ After the `permissions` required, add those xml nodes :
 
 
 ## Usage
+
 ```javascript
-import { VoxeetSDK, ConferenceUser } from "@voxeet/react-native-voxeet-conferencekit";
-...
+import { VoxeetSDK } from "@voxeet/react-native-voxeet-sdk";
 ```
 
 ## Configuration

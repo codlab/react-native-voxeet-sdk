@@ -20,7 +20,6 @@ import com.voxeet.sdk.events.sdk.StopVideoAnswerEvent;
 import com.voxeet.sdk.json.ConferenceDestroyedPush;
 import com.voxeet.sdk.json.ConferenceEnded;
 import com.voxeet.sdk.json.MediaResponse;
-import com.voxeet.sdk.json.RecordingStatusUpdatedEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -82,14 +81,6 @@ public class ConferenceStatusEventEmitter extends AbstractEventEmitter {
             @Override
             void transform(@NonNull WritableMap map, @NonNull IncomingCallEvent instance) {
                 map.putString("conferenceId", instance.conferenceId);
-            }
-        }).register(new EventFormatterCallback<RecordingStatusUpdatedEvent>(RecordingStatusUpdatedEvent.class) {
-            @Override
-            void transform(@NonNull WritableMap map, @NonNull RecordingStatusUpdatedEvent instance) {
-                map.putString("conferenceId", instance.conferenceId);
-                map.putString("userId", instance.participantId);
-                map.putString("recordingStatus", instance.recordingStatus);
-                map.putString("type", instance.getType());
             }
         }).register(new EventFormatterCallback<ConferenceDestroyedPush>(ConferenceDestroyedPush.class) {
             @Override
@@ -172,11 +163,6 @@ public class ConferenceStatusEventEmitter extends AbstractEventEmitter {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(IncomingCallEvent event) {
-        emit(event);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(RecordingStatusUpdatedEvent event) {
         emit(event);
     }
 

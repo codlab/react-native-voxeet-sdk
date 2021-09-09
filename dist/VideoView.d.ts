@@ -52,5 +52,5 @@ export default class VideoView extends Component<Props, State> {
     isScreenShare(): Promise<unknown>;
     _sendCallReturn(command: any): Promise<unknown>;
     _onCallReturn: (event: any) => void;
-    render(): any;
+    render(): JSX.Element;
 }

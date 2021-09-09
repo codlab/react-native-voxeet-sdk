@@ -35,21 +35,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 import { NativeModules } from 'react-native';
-export var RNSessionService = NativeModules.RNSessionService;
-var SessionService = /** @class */ (function () {
-    function SessionService() {
+export var RNMediaDeviceService = NativeModules.RNMediaDeviceService;
+var MediaDeviceService = /** @class */ (function () {
+    function MediaDeviceService() {
         var _this = this;
-        this.participant = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, RNSessionService.participant()];
-        }); }); };
-        this.open = function (participant) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, RNSessionService.open(participant)];
-        }); }); };
-        this.close = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-            return [2 /*return*/, RNSessionService.close()];
+        this.switchCamera = function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+            return [2 /*return*/, RNMediaDeviceService.switchCamera()];
         }); }); };
     }
-    return SessionService;
+    return MediaDeviceService;
 }());
-export default SessionService;
-//# sourceMappingURL=SessionService.js.map
+export default MediaDeviceService;
+//# sourceMappingURL=MediaDeviceService.js.map

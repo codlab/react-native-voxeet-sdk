@@ -17,7 +17,7 @@ public final class MediaStreamUtil {
     public static WritableMap toMap(@NonNull MediaStream stream) {
         WritableMap map = new WritableNativeMap();
         map.putString(RNVoxeetSDKVideoViewManager.PEER_ID, stream.peerId());
-        map.putString(RNVoxeetSDKVideoViewManager.LABEL, stream.peerId());
+        map.putString(RNVoxeetSDKVideoViewManager.LABEL, stream.label());
         map.putString(RNVoxeetSDKVideoViewManager.STREAM_TYPE, stream.getType().name());
         return map;
     }
